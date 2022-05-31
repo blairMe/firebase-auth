@@ -1,0 +1,8 @@
+.heading {
+  color: blue;
+}
+
+.form_holder {
+  display: flex;
+  flex-direction: column;
+}
