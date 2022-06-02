@@ -1,14 +1,22 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import "./App.css";
 import { signUp } from "./firebase";
 
 function App() {
+  const [loading, setLoading] = useState(false);
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
   const handleSignUp = async () => {
-    await signUp(emailRef.current.value, passwordRef.current.value);
+    setLoading(true);
+    try {
+      await signUp(emailRef.current.value, passwordRef.current.value);
+    } catch {
+      alert("Error");
+    }
+    setLoading(false);
   };
 
   return (
@@ -17,7 +25,7 @@ function App() {
         <input ref={emailRef} type="text" placeholder="Email" />
         <input ref={passwordRef} type="password" placeholder="Password" />
       </div>
-      <button onClick={handleSignUp}>Sign Up</button>
+      <button disable={loading} onClick={handleSignUp}>Sign Up</button>
     </div>
   );
 }
