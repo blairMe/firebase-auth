@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
 
+
 import "./App.css";
-import { signUp } from "./firebase";
+import { signUp, useAuth } from "./firebase";
 
 function App() {
   const [loading, setLoading] = useState(false);
+  const currentUser = useAuth()
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -21,6 +23,8 @@ function App() {
 
   return (
     <div id="main">
+
+      <div>Current logged in as: {currentUser.email} </div>
       <div id="fields">
         <input ref={emailRef} type="text" placeholder="Email" />
         <input ref={passwordRef} type="password" placeholder="Password" />
