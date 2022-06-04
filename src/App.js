@@ -43,7 +43,7 @@ function App() {
       </div>
       <button disable={loading || currentUser} onClick={handleSignUp}>Sign Up</button>
 
-      <button disabled={} onClick={handleLogout}>Log out</button>
+      <button disabled={loading || !currentUser} onClick={handleLogout}>Log out</button>
     </div>
   );
 }
